@@ -63,3 +63,13 @@ exports.getBlogsByAuthor = async (req, res, next) => {
         next(createError(500, "Server Error"));
     }
 };
+
+// get all authors
+exports.getAllAuthors = async (req, res, next) => {
+    try {
+      const authors = await BlogModel.distinct('name');
+      res.status(200).json(authors);
+    } catch (err) {
+      next(createError(500, "Internal Server Error"));
+    }
+  };
