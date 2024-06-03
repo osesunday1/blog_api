@@ -3,6 +3,10 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
 const blogsRoute = require('./routes/blogsRoute.js');
+const cors = require('cors'); 
+
+
+
 
 const app = express();
 dotenv.config();
@@ -19,6 +23,10 @@ const connect = async () => {
 mongoose.connection.on("disconnected", () => {
     console.log("mongoDB disconnected");
 });
+
+
+//CORS middleware
+app.use(cors());  // Add this line
 
 // Middlewares
 app.use(express.json());
